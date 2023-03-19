@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{fragments :: head}"></head>
+
+<body>
+    <div th:replace="~{fragments :: logo}"></div>
+    <div class="container">
+        <div th:replace="~{fragments :: titulo('Novo Pedido')"}>:</div>
+        <div class="card mt-3">
+            <form th:object="${requisicaoNovoPedido}" class="card-body" action="/pedido/novo" method="post">
+                <div class="form-group">
+                    <label for="nomeProduto">Produto</label>
+                    <input th:field="*{nomeProduto}" th:errorclass="is-invalid" class="form-control" type="text"
+                        placeholder="nome do Produto">
+                    <small>Informe o nome do produto</small>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('nomeProduto')}"></div>
+                </div>
+                <div class="form-group">
+                    <label for="urlProduto">Url</label>
+                    <input th:field="*{urlProduto}" th:errorclass="is-invalid" class="form-control" type="text"
+                        placeholder="url do Produto">
+                    <small>Procure um site o produto que você deseja e cole a url aqui</small>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('urlProduto')}"></div>
+                </div>
+                <div class="form-group">
+                    <label for="urlImagem">Imagem</label>
+                    <input th:field="*{urlImagem}" th:errorclass="is-invalid" class="form-control" type="text"
+                        placeholder="url da Imagem">
+                    <small>Copie a url de uma boa imagem do produto e cole aqui para conseguir compradores</small>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('urlImagem')}"></div>
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea th:field="*{descricao}" class="form-control"
+                        placeholder="Adicione informações importantes para o comprador"></textarea>
+                </div>
+                <button class="btn btn-primary" type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

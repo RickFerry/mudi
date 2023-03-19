@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{fragments :: head}"></head>
+
+<body>
+    <div th:replace="~{fragments :: logo}"></div>
+    <div class="container">
+        <div th:replace="~{fragments :: titulo('Meus Pedidos')}"></div>
+        <nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
+            <div class="navbar-nav">
+                <a th:classappend="${status} == 'null' ? 'active'" href="/home" class="nav-item nav-link active">Todos</a>
+                <a th:classappend="${status} == 'aguardando' ? 'active'" href="/home/aguardando" class="nav-item nav-link">Aguardando</a>
+                <a th:classappend="${status} == 'aprovado' ? 'active'" href="/home/aprovado" class="nav-item nav-link">Aprovado</a>
+                <a th:classappend="${status} == 'entregue' ? 'active'" href="/home/entregue" class="nav-item nav-link">Entregue</a>
+            </div>
+            <a href="/pedido/formulario"><button class="btn btn-outline-secondary my-2 my-sm-0">Novo</button></a>
+        </nav>
+
+        <div class="card mb-3" th:each="pedido : ${pedidos}">
+            <th:block th:switch="${pedido.status.name()}">
+                <div th:case="'AGUARDANDO'" class="alert alert-warning" th:utext="${pedido.nomeProduto}"></div>
+                <div th:case="'APROVADO'" class="alert alert-success" th:utext="${pedido.nomeProduto}"></div>
+                <div th:case="'ENTREGUE'" class="alert alert-dark" th:utext="${pedido.nomeProduto}"></div>
+            </th:block>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-sm-8 mb-3">
+                        <div class="row">
+                            <div class="col-md-5">Valor: <span th:if="${pedido.valorNegociado} != null" th:text="${'R$ ' + #numbers.formatDecimal(pedido.valorNegociado,3,'POINT',2,'COMMA')}"></span></div>
+                            <div class="col-md-7">Data da entrega: <span th:text="${#temporals.format(pedido.dataEntrega, 'dd/MM/yyyy')}"></span></div>
+                        </div>
+                        <div>Produto</div>
+                        <div><input class="form-control" type="text" th:value="${pedido.urlProduto}"></div>
+                        <div>Descrição</div>
+                        <div>
+                            <textarea class="form-control" name="" id="" cols="30" rows="5"
+                                th:text="${pedido.descricao}"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <div>
+                            <img class="img-thumbnail" th:src="${pedido.urlImagem}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
