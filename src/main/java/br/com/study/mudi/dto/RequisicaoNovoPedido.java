@@ -1,11 +1,19 @@
 package br.com.study.mudi.dto;
 
-import jakarta.validation.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 
-public record RequisicaoNovoPedido(
-    
-    @NotBlank String nomeProduto,
-    @NotBlank String urlProduto,
-    @NotBlank String urlImagem,
-    String descricao
-) {}
+import lombok.Data;
+
+@Data
+public class RequisicaoNovoPedido {
+
+    @NotBlank
+    private String nomeProduto;
+
+    @NotBlank
+    private String urlProduto;
+
+    @NotBlank
+    private String urlImagem;
+    String descricao;
+}

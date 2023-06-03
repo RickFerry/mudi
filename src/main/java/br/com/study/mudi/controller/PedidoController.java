@@ -1,5 +1,7 @@
 package br.com.study.mudi.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.study.mudi.dto.RequisicaoNovoPedido;
 import br.com.study.mudi.model.Pedido;
 import br.com.study.mudi.repository.PedidoRepository;
-import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("pedido")

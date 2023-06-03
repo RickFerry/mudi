@@ -3,13 +3,14 @@ package br.com.study.mudi.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import br.com.study.mudi.dto.RequisicaoNovoPedido;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,7 +26,7 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String nomeProduto;
     private BigDecimal valorNegociado;
     private LocalDate dataEntrega;
@@ -35,12 +36,12 @@ public class Pedido {
 
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
-    
+
     public Pedido(RequisicaoNovoPedido requisicao) {
-        this.nomeProduto = requisicao.nomeProduto();
-        this.urlImagem = requisicao.urlImagem();
-        this.urlProduto = requisicao.urlProduto();
-        this.descricao = requisicao.descricao();
+        this.nomeProduto = requisicao.getNomeProduto();
+        this.urlImagem = requisicao.getUrlImagem();
+        this.urlProduto = requisicao.getUrlProduto();
+        this.descricao = requisicao.getDescricao();
         this.status = StatusPedido.AGUARDANDO;
     }
 }
