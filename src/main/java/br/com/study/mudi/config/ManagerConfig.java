@@ -16,7 +16,7 @@ public class ManagerConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
+        http.authorizeRequests().anyRequest().authenticated().and().formLogin(f -> f.loginPage("/login").permitAll());
     }
 
     @Bean
