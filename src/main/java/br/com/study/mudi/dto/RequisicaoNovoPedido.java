@@ -15,5 +15,6 @@ public class RequisicaoNovoPedido {
 
     @NotBlank
     private String urlImagem;
-    String descricao;
+    
+    private String descricao;
 }
