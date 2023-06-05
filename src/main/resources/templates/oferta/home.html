@@ -3,13 +3,13 @@
 
 <head th:replace="~{fragments :: head}"></head>
 
-<body onclick="onLoad()">
+<body>
     <div th:replace="~{fragments :: logo}"></div>
     <div class="container" id="ofertas">
         <div th:replace="~{fragments :: titulo('Faça sua oferta')}"></div>
 
         <div class="card mb-3" v-for="pedido in pedidos">
-            <div class="alert alert-warning">{{ pedido.nomeProduto }}</div>
+            <div class="card-header alert-dark">{{ pedido.nomeProduto }}</div>
 
             <div class="card-body">
                 <div class="row">
@@ -38,27 +38,26 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        function onLoad() {
-            new Vue({
-                el: '#ofertas',
-                data: {
-                    pedidos: [],
-                },
-                mount() {
-                    axios
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    pedidos: axios
                         .get('http://localhost:8080/api/pedidos/aguardando')
                         .then(response => {
                             console.log(response.data)
                             this.pedidos = response.data
-                        });
+                        }),
                 }
-            })
-        }
+            }
+        }).mount('#ofertas')
     </script>
-    <script type="text/javascript" src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
 </body>
-
 
 </html>
