@@ -23,7 +23,7 @@ public class ManagerConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests().anyRequest().authenticated().and()
-                .formLogin(f -> f.loginPage("/login").defaultSuccessUrl("/home", true).permitAll())
+                .formLogin(f -> f.loginPage("/login").defaultSuccessUrl("/usuario/pedido", true).permitAll())
                 .logout(l -> l.logoutUrl("/logout"));
     }
 

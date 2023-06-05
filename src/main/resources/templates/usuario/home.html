@@ -9,13 +9,13 @@
         <div th:replace="~{fragments :: titulo('Meus Pedidos')}"></div>
         <nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
             <div class="navbar-nav">
-                <a th:classappend="${status} == 'null' ? 'active'" href="/home"
+                <a th:classappend="${status} == 'null' ? 'active'" th:href="@{/usuario/pedido}"
                     class="nav-item nav-link active">Todos</a>
-                <a th:classappend="${status} == 'aguardando' ? 'active'" href="/home/aguardando"
+                <a th:classappend="${status} == 'aguardando' ? 'active'" th:href="@{/usuario/pedido/aguardando}"
                     class="nav-item nav-link">Aguardando</a>
-                <a th:classappend="${status} == 'aprovado' ? 'active'" href="/home/aprovado"
+                <a th:classappend="${status} == 'aprovado' ? 'active'" th:href="@{/usuario/pedido/aprovado}"
                     class="nav-item nav-link">Aprovado</a>
-                <a th:classappend="${status} == 'entregue' ? 'active'" href="/home/entregue"
+                <a th:classappend="${status} == 'entregue' ? 'active'" th:href="@{/usuario/pedido/entregue}"
                     class="nav-item nav-link">Entregue</a>
             </div>
             <a href="/pedido/formulario"><button class="btn btn-outline-secondary my-2 my-sm-0">Novo</button></a>

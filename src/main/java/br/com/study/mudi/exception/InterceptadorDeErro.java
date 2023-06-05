@@ -8,6 +8,6 @@ public class InterceptadorDeErro {
 
 	@ExceptionHandler(IllegalArgumentException.class)
 	public String tratarIllegalArgumentException() {
-		return "redirect:/home";
+		return "redirect:/usuario/home";
 	}
 }
