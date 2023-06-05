@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import br.com.study.mudi.dto.RequisicaoNovoPedido;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,6 +38,7 @@ public class Pedido {
     private String urlImagem;
     private String descricao;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
