@@ -1,6 +1,7 @@
 package br.com.study.mudi.api;
 
 import javax.persistence.EntityNotFoundException;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ public class OfertasRest {
     private PedidoRepository pedidoRepository;
 
     @PostMapping
-    public Oferta criaOferta(@RequestBody OfertaDto dto) {
+    public Oferta criaOferta(@Valid @RequestBody OfertaDto dto) {
         Pedido p = pedidoRepository.findById(dto.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Pedido não encontrado"));
         
